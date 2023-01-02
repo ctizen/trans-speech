@@ -1,13 +1,23 @@
+@font-face {
+  font-family: "PT Sans Narrow";
+  src: url('../../trans-speech/src/fonts/PTSansNarrow-Regular.ttf');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "PT Sans Narrow";
+  src: url('../../trans-speech/src/fonts/PTSansNarrow-Bold.ttf');
+  font-weight: bold;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "PT Sans Narrow", sans-serif !important;
+  font-size: 28px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace !important;
 }
