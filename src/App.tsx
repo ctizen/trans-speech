@@ -6,13 +6,29 @@ import WrikeImage from '../../trans-speech/src/img/wrike.png';
 import VkImage from '../../trans-speech/src/img/vk.png';
 import FpjsImage from '../../trans-speech/src/img/fingerprint.png';
 import customTheme from '../../trans-speech/src/theme/theme-default';
-import { Deck, FlexBox, Heading, Notes, Slide } from "spectacle";
+import {Deck, FlexBox, Heading, Notes, Slide, AnimatedProgress, Box, FullScreen} from "spectacle";
 
 // Reference: https://formidable.com/open-source/spectacle/docs/props
 
+const template = () => (
+  <FlexBox
+    justifyContent="space-between"
+    position="absolute"
+    bottom={0}
+    width={1}
+  >
+    <Box padding="0 1em">
+      <FullScreen />
+    </Box>
+    <Box padding="1em">
+      <AnimatedProgress />
+    </Box>
+  </FlexBox>
+);
+
 function App() {
   return (
-    <Deck theme={customTheme}>
+    <Deck theme={customTheme} template={template}>
       <Slide>
         <FlexBox height="100%">
           <FlexBox height="100%" flexDirection="column">
