@@ -1,0 +1,34 @@
+.mermaid, .mermaid > svg {
+    width: 100%;
+    max-width: 100% !important;
+    height: 100%;
+}
+
+.mermaid .flowchart-link {
+    stroke: #B07156 !important;
+}
+
+.mermaid .marker {
+    fill: #B07156 !important;
+    stroke: #B07156 !important;
+}
+
+.mermaid .edgeLabel {
+    color: #43281C !important;
+    text-align: center;
+}
+
+.mermaid .edgeLabel foreignObject {
+    box-shadow: 0px 0px 0px 4px #B07156;
+}
+
+.mermaid .edgeLabel, .mermaid .edgeLabel foreignObject > div {
+    box-shadow: inset 0px 0px 0px 3px #B07156;
+    background-color: #B07156 !important;
+}
+
+.mermaid .node rect, .mermaid .node circle, .mermaid .node ellipse, .mermaid .node polygon, .mermaid .node path {
+    fill: #C4A287 !important;
+    stroke: #AB4E68 !important;
+    stroke-width: 1px;
+}

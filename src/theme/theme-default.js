@@ -1,4 +1,8 @@
 export default {
+    size: {
+        width: 1024,
+        height: 768
+    },
     colors: {
         primary: '#C4A287', // text, content
         secondary: '#C4A287', // text, headers
@@ -14,8 +18,8 @@ export default {
         h1: '72px',
         h2: '64px',
         h3: '48px',
-        text: '24px',
-        monospace: '24px'
+        text: '32px',
+        monospace: '20px'
     },
     // space: number[];
 };
