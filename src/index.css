@@ -12,6 +12,7 @@
 
 body {
   margin: 0;
+  background-color: #43281C;
   font-family: "PT Sans Narrow", sans-serif !important;
   font-size: 28px;
   -webkit-font-smoothing: antialiased;
@@ -20,4 +21,8 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace !important;
+}
+
+#root > div {
+  background-color: #43281C !important;
 }
