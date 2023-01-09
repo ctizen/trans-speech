@@ -19,7 +19,7 @@ export default {
         h2: '64px',
         h3: '48px',
         text: '32px',
-        monospace: '20px'
+        monospace: '18px'
     },
     // space: number[];
 };

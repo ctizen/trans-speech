@@ -1,0 +1,14 @@
+{
+  "src": ["src/*.iso.tsx"],
+  "outDir": "build",
+  "quiet": false,
+  "bail": "none",
+  "dump": false,
+  "noZap": false,
+  "verbose": false,
+  "verboseUsage": false,
+  "printImportTree": true,
+  "rootNs": "Elephize",
+  "builtinsNs": "Builtins",
+  "baseDir": "src/"
+}
