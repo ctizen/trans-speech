@@ -1,6 +1,8 @@
 import './App.css';
 import MermaidReact from 'mermaid-react';
+import PrevedImage from '../../trans-speech/src/img/preved.png';
 import MainpageImage from '../../trans-speech/src/img/mainpage.png';
+import DemoImage from '../../trans-speech/src/img/demo.png';
 import NstuImage from '../../trans-speech/src/img/nstu.png';
 import GisImage from '../../trans-speech/src/img/2gis.png';
 import WrikeImage from '../../trans-speech/src/img/wrike.png';
@@ -8,9 +10,15 @@ import VkImage from '../../trans-speech/src/img/vk.png';
 import kPhpImage from '../../trans-speech/src/img/kphp.jpg';
 import ReactImage from '../../trans-speech/src/img/react.png';
 import FpjsImage from '../../trans-speech/src/img/fingerprint.png';
+import AdoptionImage from '../../trans-speech/src/img/adoption.jpg';
 import MahjongImage from '../../trans-speech/src/img/mahjong.jpg';
 import AnimeImage from '../../trans-speech/src/img/anime.jpg';
 import CatsImage from '../../trans-speech/src/img/cats.jpg';
+import WatImage from '../../trans-speech/src/img/wat.gif';
+import UdavImage from '../../trans-speech/src/img/udav.jpg';
+import HistoryImage from '../../trans-speech/src/img/history.jpg';
+import QuestionsImage from '../../trans-speech/src/img/questions.jpg';
+import WtfVideo from '../../trans-speech/src/img/wtf.mp4';
 import customTheme from '../../trans-speech/src/theme/theme-default';
 import {
   Deck,
@@ -18,14 +26,13 @@ import {
   Heading,
   Notes,
   Slide,
-  AnimatedProgress,
   Box,
   FullScreen,
   ListItem,
   Appear,
   UnorderedList,
   CodePane,
-  OrderedList
+  OrderedList, Progress
 } from "spectacle";
 
 const diagrams = {
@@ -40,8 +47,6 @@ flowchart LR
 `
 };
 
-// TODO: 1) допилить TODO пункты, 2) разбавить мемасиками
-
 // Reference: https://formidable.com/open-source/spectacle/docs/props
 
 const template = () => (
@@ -55,7 +60,7 @@ const template = () => (
       <FullScreen />
     </Box>
     <Box padding="1em">
-      <AnimatedProgress />
+      <Progress />
     </Box>
   </FlexBox>
 );
@@ -69,7 +74,7 @@ function App() {
         <FlexBox height="100%">
           <FlexBox height="100%" flexDirection="column">
             <Heading>Трудности перевода</Heading>
-            <Heading margin="0px" fontSize="h4">переводим код между языками весело и задорно</Heading>
+            <Heading margin="0px" fontSize="h4">переводим код между языками<br />весело и задорно</Heading>
           </FlexBox>
           <img src={MainpageImage} className="r-stretch" alt=''/>
         </FlexBox>
@@ -77,6 +82,7 @@ function App() {
 
       <Slide>
         <FlexBox height="100%">
+          <img src={PrevedImage} width="200px" style={{ position: 'absolute', top: '25%', left: '10%' }} alt='' />
           <Heading>Приветствие</Heading>
           <Notes>
             - Привет, меня зовут...
@@ -146,22 +152,15 @@ function App() {
       </Slide>
 
       <Slide>
-      <FlexBox height="100%">
-        <Heading>Как понять, что мне нужен транспилятор?</Heading>
-        <Notes>
-          - Главный вопрос с которого начинать - НАФИГА
-          - Мб достаточно уже имеющихся инструментов? Мб можно обойтись средствами ЯП?
-          - Ну если надо, то кроличья нора ждет
-          - Пример во второй части презентации
-        </Notes>
-      </FlexBox>
-    </Slide>
-
-      <Slide>
         <FlexBox height="100%">
-          <Heading>Матчасть</Heading>
+          <Heading>Как понять, что мне нужен транспилятор?</Heading>
+          <img src={UdavImage} alt='' />
           <Notes>
-            - Немного терминологии и общих сведений
+            - Главный вопрос с которого начинать - НАФИГА
+            - Мб достаточно уже имеющихся инструментов? Мб можно обойтись средствами ЯП?
+            - Ну если надо, то кроличья нора ждет
+            - Пример во второй части презентации
+            - Дальше немного терминологии и общих сведений
           </Notes>
         </FlexBox>
       </Slide>
@@ -197,9 +196,17 @@ function App() {
           </UnorderedList>
           <Notes>
             - Из чего состоит ЯП? Своими словами
-            - Чуть подробнее про каждое далее
           </Notes>
         </FlexBox>
+      </Slide>
+
+      <Slide>
+        <FlexBox height="100%">
+          <img src={WatImage} alt='' />
+        </FlexBox>
+        <Notes>
+          - Чуть подробнее про каждое далее
+        </Notes>
       </Slide>
 
       <Slide>
@@ -229,12 +236,11 @@ function App() {
         <FlexBox height="100%" flexDirection="column">
           <Heading>Синтаксический анализатор</Heading>
           <CodePane language='javascript' showLineNumbers={false}>{`
-            let x = y.toString()
+            x = y.toString()
           `}</CodePane>
           <hr style={{ width: '100%'}} />
           <CodePane language='javascript' showLineNumbers={false}>{`
             AssignmentExpression {
-              keyword: LetKeyword,
               identifier: Identifier { text: 'x' },
               expression: CallExpression {
                 args: [],
@@ -313,9 +319,8 @@ function App() {
         <FlexBox height="100%" justifyContent="space-between">
           <div className='code-smaller'>
             <CodePane language='javascript' showLineNumbers={false}>{`
-              // let x = y.toString()
+              // x = y.toString()
               AssignmentExpression {
-                keyword: LetKeyword,
                 identifier: Identifier {
                   text: 'x'
                 },
@@ -368,6 +373,15 @@ function App() {
 
       <Slide>
         <FlexBox height="100%">
+          <video src={WtfVideo} autoPlay loop muted width={500} />
+        </FlexBox>
+        <Notes>
+          - Сумбурно? Непонятно? Согласен.
+        </Notes>
+      </Slide>
+
+      <Slide>
+        <FlexBox height="100%">
           <Heading>Ресурсы</Heading>
           <UnorderedList>
             <Appear>
@@ -400,15 +414,16 @@ function App() {
 
       <Slide>
         <FlexBox height="100%">
+          <img src={HistoryImage} width="300px" alt='' />
           <Heading>Предыстория</Heading>
           <Appear>
-            <img src={VkImage} width="120px" alt='' style={{ position: 'absolute', top: '20%', left: '20%' }} />
+            <img src={VkImage} width="120px" alt='' style={{ position: 'absolute', top: '23%', left: '8%' }} />
           </Appear>
           <Appear>
-            <img src={ReactImage} width="120px" alt='' style={{ position: 'absolute', right: '20%', top: '20%' }} />
+            <img src={ReactImage} width="120px" alt='' style={{ position: 'absolute', top: '23%', left: '35%' }} />
           </Appear>
           <Appear>
-            <img src={kPhpImage} width="120px" alt='' style={{ position: 'absolute', right: '20%', bottom: '20%' }} />
+            <img src={kPhpImage} width="120px" alt='' style={{ position: 'absolute', top: '60%', left: '20%' }} />
           </Appear>
         </FlexBox>
         <Notes>
@@ -470,6 +485,7 @@ function App() {
 
       <Slide>
         <FlexBox height="100%" flexDirection="column">
+          <Heading>Что решили?</Heading>
           <UnorderedList>
             <Appear>
               <ListItem>Используем Typescript compiler API</ListItem>
@@ -506,35 +522,65 @@ function App() {
       </Slide>
 
       <Slide>
-        <FlexBox height="100%" flexDirection="column">
-          <Heading>Вернемся к примеру</Heading>
-          <CodePane language='javascript' showLineNumbers={false}>{`
-            let x = y.toString()
-          `}</CodePane>
-          <hr style={{ width: '100%'}} />
-          <CodePane language='javascript' showLineNumbers={false}>{`
-            AssignmentExpression {
-              keyword: LetKeyword,
-              identifier: Identifier { text: 'x' },
-              expression: CallExpression {
-                args: [],
-                expression: PropertyAccessExpression {
-                  property: Identifier { text: 'toString' },
-                  expression: Identifier { text: 'y' }
+        <Heading>Вернемся к примеру</Heading>
+        <FlexBox height="100%" justifyContent="space-between">
+          <div className='code-smaller'>
+            <CodePane language='javascript' showLineNumbers={false}>{`
+              // x = y.toString()
+              AssignmentExpression {
+                identifier: Identifier {
+                  text: 'x'
+                },
+                expression: CallExpression {
+                  args: [],
+                  expression: PropertyAccessExpression {
+                    property: Identifier {
+                      text: 'toString'
+                    },
+                    expression: Identifier {
+                      text: 'y'
+                    }
+                  }
                 }
               }
-            }
-          `}</CodePane>
+            `}</CodePane>
+          </div>
+
+          <div className='code-smaller'>
+            <CodePane language='javascript' showLineNumbers={false}>{`
+              function render(node) {
+                switch (node.kind) {
+                  case AssignmentExpression:
+                    const id = render(node.identifier);
+                    const expr = render(node.expression};
+                    return \`\${id} = \${expr}\`; 
+                  case Identifier: // terminal - trivial!
+                    return '$' + node.text;
+                  case CallExpression: // bad impl!
+                    if (
+                      node.expression.kind === PropertyAccessExpression &&
+                      node.expression.property.text === 'toString'
+                    ) {
+                      const expr = render(node.expression.expression);
+                      return \`(string)(\${expr})\`;
+                    }
+                }
+              }
+    
+              render(assignment); // $x = (string)($y)
+            `}</CodePane>
+          </div>
         </FlexBox>
         <Notes>
-          - LetKeyword - терминальная нода.
-          - Вместо идентификаторов можно подставить выражение, значит их надо обрабатывать как нетерминалы
-          - Обр. внимание: Лишние токены отсутствуют в AST
+          - Модифицировали для вывода php
+          - Огребли с разницей между statement и expression - ни одной точки с запятой
         </Notes>
       </Slide>
 
+
       <Slide>
         <FlexBox height="100%">
+          <img src={DemoImage} width="300px" alt='' />
           <Heading>Непринужденное демо</Heading>
         </FlexBox>
         <Notes>
@@ -725,6 +771,7 @@ function App() {
       <Slide>
         <FlexBox height="100%">
           <Heading>А что там с внедрением?</Heading>
+          <img src={AdoptionImage} width="300px" alt='' />
         </FlexBox>
         <Notes>
           - Мобильная версия VK - да.
@@ -735,15 +782,17 @@ function App() {
 
       <Slide>
         <FlexBox height="100%">
-          <Heading>Спасибо за внимание</Heading>
-          <UnorderedList>
-            <ListItem>Олег Клименко</ListItem>
-            <ListItem>Mailto: me@ctizen.dev</ListItem>
-            <ListItem>https://github.com/ctizen</ListItem>
-          </UnorderedList>
+          <img src={QuestionsImage} width="400px" alt='' />
+          <FlexBox flexDirection="column">
+            <Heading>Спасибо за внимание!</Heading>
+            <UnorderedList>
+              <ListItem>Олег Клименко</ListItem>
+              <ListItem>Mailto: me@ctizen.dev</ListItem>
+              <ListItem>https://github.com/ctizen</ListItem>
+            </UnorderedList>
+          </FlexBox>
         </FlexBox>
       </Slide>
-
     </Deck>
   );
 }
