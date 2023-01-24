@@ -32,7 +32,7 @@ import {
   Appear,
   UnorderedList,
   CodePane,
-  OrderedList, Progress
+  Progress
 } from "spectacle";
 
 const diagrams = {
@@ -82,7 +82,7 @@ function App() {
 
       <Slide>
         <FlexBox height="100%">
-          <img src={PrevedImage} width="200px" style={{ position: 'absolute', top: '25%', left: '10%' }} alt='' />
+          <img src={PrevedImage} width="300px" style={{ position: 'absolute', top: '25%', left: '10%' }} alt='' />
           <Heading>Приветствие</Heading>
           <Notes>
             - Привет, меня зовут...<br />
@@ -115,7 +115,7 @@ function App() {
 
       <Slide>
         <FlexBox height="100%" justifyContent='space-around'>
-          <img src={NstuImage} width="300px" alt='' />
+          <img src={NstuImage} width="450px" alt='' />
           <ul>
             <li>АВТФ, 2010</li>
             <li>Вычислительные комплексы системы и сети</li>
@@ -129,9 +129,9 @@ function App() {
 
       <Slide>
         <FlexBox height="100%" justifyContent='space-around'>
-          <img src={MahjongImage} width="300px" alt='' />
-          <img src={AnimeImage} width="300px" alt='' />
-          <img src={CatsImage} width="300px" alt='' />
+          <img src={MahjongImage} width="450px" alt='' />
+          <img src={AnimeImage} width="450px" alt='' />
+          <img src={CatsImage} width="450px" alt='' />
           <Notes>
             - маджонг, аниме, котики, делать мир лучше
           </Notes>
@@ -140,10 +140,10 @@ function App() {
 
       <Slide>
         <FlexBox height="100%" justifyContent='space-around'>
-          <img src={GisImage} width="300px" alt='' />
-          <img src={WrikeImage} width="300px" alt='' />
-          <img src={VkImage} width="120px" alt='' />
-          <img src={FpjsImage} width="150px" alt='' />
+          <img src={GisImage} width="450px" alt='' />
+          <img src={WrikeImage} width="450px" alt='' />
+          <img src={VkImage} width="180px" alt='' />
+          <img src={FpjsImage} width="225px" alt='' />
           <Notes>
             - компании<br />
             - мидл - архитектор - мидл - архитектор - мидл
@@ -157,9 +157,11 @@ function App() {
           <img src={UdavImage} alt='' />
           <Notes>
             - Главный вопрос с которого начинать - НАФИГА<br />
-            - Мб достаточно уже имеющихся инструментов? Мб можно обойтись средствами ЯП?<br />
+              - Обычно - чтобы получить единый источник истины для данных или поведения
+              - Пример
+            - Мб уже есть нужный транспилятор? Мб достаточно уже имеющихся инструментов? Мб можно обойтись средствами ЯП?<br />
             - Ну если надо, то кроличья нора ждет<br />
-            - Пример во второй части презентации<br />
+            - Пример во второй части презентации
             - Дальше немного терминологии и общих сведений
           </Notes>
         </FlexBox>
@@ -279,6 +281,7 @@ function App() {
           </UnorderedList>
         </FlexBox>
         <Notes>
+          - НЕ ЗАЛИПАЕМ
           - Дальше - кроличья норма кастомной логики, придающей семантику.<br />
           - AST1 в AST2<br />
           - Сразу генерировать код на целевом языке<br />
@@ -289,20 +292,24 @@ function App() {
 
       <Slide>
         <FlexBox height="100%" justifyContent="space-between">
-          <CodePane language='javascript' showLineNumbers={false}>{`
-            Alphabet = [OpenTag, ClosingTag, Literal]
-  
-            S -> OpenTag S ClosingTag
-            S -> Literal
-          `}</CodePane>
-          <CodePane language='html' showLineNumbers={true}>{`
-            text
-            <div>text</div>
-            <div><span><a>text</a></span></div>
-            <span>text</div>
-            <span><div>text</lol></kek>
-            <div>text</div><span>text</span>
-          `}</CodePane>
+          <div className='code-smaller'>
+            <CodePane language='javascript' showLineNumbers={false}>{`
+              Alphabet = [OpenTag, ClosingTag, Literal]
+    
+              S -> OpenTag S ClosingTag
+              S -> Literal
+            `}</CodePane>
+          </div>
+          <div className='code-smaller'>
+            <CodePane language='html' showLineNumbers={true}>{`
+              text
+              <div>text</div>
+              <div><span><a>text</a></span></div>
+              <span>text</div>
+              <span><div>text</lol></kek>
+              <div>text</div><span>text</span>
+            `}</CodePane>
+          </div>
         </FlexBox>
 
         <Notes>
@@ -316,21 +323,51 @@ function App() {
       </Slide>
 
       <Slide>
-        <FlexBox height="100%" justifyContent="space-between">
+        <FlexBox height="100%" justifyContent="center">
           <div className='code-smaller'>
             <CodePane language='javascript' showLineNumbers={false}>{`
               // x = y.toString()
               AssignmentExpression {
-                identifier: Identifier {
+                id: Identifier {
                   text: 'x'
                 },
-                expression: CallExpression {
+                expr: CallExpression {
                   args: [],
-                  expression: PropertyAccessExpression {
-                    property: Identifier {
+                  expr: PropertyAccessExpression {
+                    prop: Identifier {
                       text: 'toString'
                     },
-                    expression: Identifier {
+                    expr: Identifier {
+                      text: 'y'
+                    }
+                  }
+                }
+              }
+            `}</CodePane>
+          </div>
+        </FlexBox>
+        <Notes>
+          - Как парсится конструкция?
+          - Что во что вложено?
+        </Notes>
+      </Slide>
+
+      <Slide>
+        <FlexBox height="100%" justifyContent="space-between">
+          <div className='code-even-smaller'>
+            <CodePane language='javascript' showLineNumbers={false}>{`
+              // x = y.toString()
+              AssignmentExpression {
+                id: Identifier {
+                  text: 'x'
+                },
+                expr: CallExpression {
+                  args: [],
+                  expr: PropertyAccessExpression {
+                    prop: Identifier {
+                      text: 'toString'
+                    },
+                    expr: Identifier {
                       text: 'y'
                     }
                   }
@@ -340,21 +377,21 @@ function App() {
           </div>
 
           <div className='code-smaller'>
-            <CodePane language='javascript' showLineNumbers={false}>{`
+            <CodePane language='javascript' highlightRanges={[3, [4, 6], 4, [7, 8], 5, 9, [11, 12], 14, [7, 8], 15, 6]}>{`
               function render(node) {
                 switch (node.kind) {
                   case AssignmentExpression:
-                    const id = render(node.identifier);
-                    const expr = render(node.expression};
+                    const id = render(node.id);
+                    const expr = render(node.expr);
                     return \`(set \${id} \${expr})\`; 
                   case Identifier: // terminal - trivial!
                     return node.text;
-                  case CallExpression: // bad impl!
+                  case CallExpression:
                     if (
-                      node.expression.kind === PropertyAccessExpression &&
-                      node.expression.property.text === 'toString'
+                      node.expr.kind === PropertyAccessExpression &&
+                      node.expr.prop.text === 'toString'
                     ) {
-                      const expr = render(node.expression.expression);
+                      const expr = render(node.expr.expr); // oof
                       return \`(write-to-string \${expr})\`;
                     }
                 }
@@ -373,57 +410,26 @@ function App() {
 
       <Slide>
         <FlexBox height="100%">
-          <video src={WtfVideo} autoPlay loop muted width={500} />
+          <video src={WtfVideo} autoPlay loop muted width={750} />
         </FlexBox>
         <Notes>
           - Сумбурно? Непонятно? Согласен.
+          - Может на примере станет понятнее
         </Notes>
       </Slide>
 
       <Slide>
         <FlexBox height="100%">
-          <Heading>Ресурсы</Heading>
-          <UnorderedList>
-            <Appear>
-              <ListItem>Ахо, Ульман: Компиляторы</ListItem>
-              <ListItem>Карпов: Основы построения трансляторов</ListItem>
-            </Appear>
-            <Appear>
-              <ListItem>GNU Tools:</ListItem>
-              <UnorderedList>
-                <ListItem>Lex</ListItem>
-                <ListItem>Bison</ListItem>
-              </UnorderedList>
-            </Appear>
-            <Appear>
-              <ListItem>JS Tools:</ListItem>
-              <UnorderedList>
-                <ListItem>Typescript compiler</ListItem>
-                <ListItem>Espree</ListItem>
-              </UnorderedList>
-            </Appear>
-          </UnorderedList>
-        </FlexBox>
-        <Notes>
-          - Куда копнуть в теории? Книги.<br />
-          - Ахо-Ульман - библия компиляторщика<br />
-          - Lex/Bison - для знакомых с С/С++. Например php их юзает.<br />
-          - Готовые штуки - espree (eslint!), ts compiler api
-        </Notes>
-      </Slide>
-
-      <Slide>
-        <FlexBox height="100%">
-          <img src={HistoryImage} width="300px" alt='' />
+          <img src={HistoryImage} width="450px" alt='' />
           <Heading>Предыстория</Heading>
           <Appear>
-            <img src={VkImage} width="120px" alt='' style={{ position: 'absolute', top: '23%', left: '8%' }} />
+            <img src={VkImage} width="180px" alt='' style={{ position: 'absolute', top: '23%', left: '12%' }} />
           </Appear>
           <Appear>
-            <img src={ReactImage} width="120px" alt='' style={{ position: 'absolute', top: '23%', left: '35%' }} />
+            <img src={ReactImage} width="180px" alt='' style={{ position: 'absolute', top: '23%', left: '39%' }} />
           </Appear>
           <Appear>
-            <img src={kPhpImage} width="120px" alt='' style={{ position: 'absolute', top: '60%', left: '20%' }} />
+            <img src={kPhpImage} width="180px" alt='' style={{ position: 'absolute', top: '60%', left: '25%' }} />
           </Appear>
         </FlexBox>
         <Notes>
@@ -476,7 +482,7 @@ function App() {
           </UnorderedList>
         </FlexBox>
         <Notes>
-          - Надо облегчить себе жизнь ограничениями и допушениями<br />
+          - Надо облегчить себе жизнь ограничениями и допущениями<br />
           - Возможности целевого языка эмулируются при компиляции<br />
           - Лесом классы, асинхронщину. Только функциональные компоненты!<br />
           - Лучше если мы дадим kphp хорошие типы (хотя он может в mixed)
@@ -524,20 +530,20 @@ function App() {
       <Slide>
         <Heading>Вернемся к примеру</Heading>
         <FlexBox height="100%" justifyContent="space-between">
-          <div className='code-smaller'>
+          <div className='code-even-smaller'>
             <CodePane language='javascript' showLineNumbers={false}>{`
               // x = y.toString()
               AssignmentExpression {
-                identifier: Identifier {
+                id: Identifier {
                   text: 'x'
                 },
-                expression: CallExpression {
+                expr: CallExpression {
                   args: [],
-                  expression: PropertyAccessExpression {
-                    property: Identifier {
+                  expr: PropertyAccessExpression {
+                    prop: Identifier {
                       text: 'toString'
                     },
-                    expression: Identifier {
+                    expr: Identifier {
                       text: 'y'
                     }
                   }
@@ -551,22 +557,21 @@ function App() {
               function render(node) {
                 switch (node.kind) {
                   case AssignmentExpression:
-                    const id = render(node.identifier);
-                    const expr = render(node.expression};
+                    const id = render(node.id);
+                    const expr = render(node.expr);
                     return \`\${id} = \${expr}\`; 
                   case Identifier: // terminal - trivial!
                     return '$' + node.text;
-                  case CallExpression: // bad impl!
+                  case CallExpression:
                     if (
-                      node.expression.kind === PropertyAccessExpression &&
-                      node.expression.property.text === 'toString'
+                      node.expr.kind === PropertyAccessExpression &&
+                      node.expr.prop.text === 'toString'
                     ) {
-                      const expr = render(node.expression.expression);
+                      const expr = render(node.expr.expr); // oof
                       return \`(string)(\${expr})\`;
                     }
                 }
               }
-    
               render(assignment); // $x = (string)($y)
             `}</CodePane>
           </div>
@@ -580,7 +585,7 @@ function App() {
 
       <Slide>
         <FlexBox height="100%">
-          <img src={DemoImage} width="300px" alt='' />
+          <img src={DemoImage} width="450px" alt='' />
           <Heading>Непринужденное демо</Heading>
         </FlexBox>
         <Notes>
@@ -596,182 +601,182 @@ function App() {
         </Notes>
       </Slide>
 
-      <Slide>
-        <FlexBox height="100%" flexDirection="column">
-          <Heading>WTF #1: проброс переменных в замыкание</Heading>
-          <FlexBox height="100%">
-            <CodePane language='javascript'>{`
-              let x = 1;
-              function test() {
-                return x * 2;
-              }
-            `}</CodePane>
-            →
-            <CodePane language='php'>{`
-              $x = 1;
-              function test() use($x) {
-                return $x * 2;
-              }
-            `}</CodePane>
-          </FlexBox>
-        </FlexBox>
-        <Notes>
-          - Первый челлендж: автоматическое просачивание vs ручное<br />
-          - Что делать? Отслеживать использование
-        </Notes>
-      </Slide>
+      {/*<Slide>*/}
+      {/*  <FlexBox height="100%" flexDirection="column">*/}
+      {/*    <Heading>WTF #1: проброс переменных в замыкание</Heading>*/}
+      {/*    <FlexBox height="100%">*/}
+      {/*      <CodePane language='javascript'>{`*/}
+      {/*        let x = 1;*/}
+      {/*        function test() {*/}
+      {/*          return x * 2;*/}
+      {/*        }*/}
+      {/*      `}</CodePane>*/}
+      {/*      →*/}
+      {/*      <CodePane language='php'>{`*/}
+      {/*        $x = 1;*/}
+      {/*        function test() use($x) {*/}
+      {/*          return $x * 2;*/}
+      {/*        }*/}
+      {/*      `}</CodePane>*/}
+      {/*    </FlexBox>*/}
+      {/*  </FlexBox>*/}
+      {/*  <Notes>*/}
+      {/*    - Первый челлендж: автоматическое просачивание vs ручное<br />*/}
+      {/*    - Что делать? Отслеживать использование*/}
+      {/*  </Notes>*/}
+      {/*</Slide>*/}
 
-      <Slide>
-        <FlexBox height="100%" flexDirection="column">
-          <Heading>WTF #1: проброс переменных в замыкание</Heading>
-          <FlexBox height="100%">
-            <CodePane language='javascript'>{`
-              let x = 1;
-              function test() {
-                x++;
-                return x * 2;
-              }
-            `}</CodePane>
-            →
-            <CodePane language='php' highlightRanges={[2]}>{`
-              $x = 1;
-              function test() use(&$x) {
-                $x++;
-                return $x * 2;
-              }
-            `}</CodePane>
-          </FlexBox>
-        </FlexBox>
-        <Notes>
-          - В php работает передача по ссылке при пробросе - то что надо<br />
-          - В kphp не работает - гонки, UB. Поэтому приходится городить костыли.
-        </Notes>
-      </Slide>
+      {/*<Slide>*/}
+      {/*  <FlexBox height="100%" flexDirection="column">*/}
+      {/*    <Heading>WTF #1: проброс переменных в замыкание</Heading>*/}
+      {/*    <FlexBox height="100%">*/}
+      {/*      <CodePane language='javascript'>{`*/}
+      {/*        let x = 1;*/}
+      {/*        function test() {*/}
+      {/*          x++;*/}
+      {/*          return x * 2;*/}
+      {/*        }*/}
+      {/*      `}</CodePane>*/}
+      {/*      →*/}
+      {/*      <CodePane language='php' highlightRanges={[2]}>{`*/}
+      {/*        $x = 1;*/}
+      {/*        function test() use(&$x) {*/}
+      {/*          $x++;*/}
+      {/*          return $x * 2;*/}
+      {/*        }*/}
+      {/*      `}</CodePane>*/}
+      {/*    </FlexBox>*/}
+      {/*  </FlexBox>*/}
+      {/*  <Notes>*/}
+      {/*    - В php работает передача по ссылке при пробросе - то что надо<br />*/}
+      {/*    - В kphp не работает - гонки, UB. Поэтому приходится городить костыли.*/}
+      {/*  </Notes>*/}
+      {/*</Slide>*/}
 
-      <Slide>
-        <FlexBox height="100%" flexDirection="column">
-          <Heading>WTF #2: type-dependent rendering</Heading>
-          <FlexBox height="100%">
-            <CodePane language='javascript'>{`
-              let x = 1 + 2;
-              let y = "a" + "b";
-              let z = "12" + 1;
-            `}</CodePane>
-            →
-            <CodePane language='php'>{`
-              $x = 1 + 2;
-              $y = "a" . "b";
-              $z = // ???
-            `}</CodePane>
-          </FlexBox>
-        </FlexBox>
-        <Notes>
-          - Большая полиморфность JS.<br />
-          - Что должно быть в третьем случае?
-        </Notes>
-      </Slide>
+      {/*<Slide>*/}
+      {/*  <FlexBox height="100%" flexDirection="column">*/}
+      {/*    <Heading>WTF #2: type-dependent rendering</Heading>*/}
+      {/*    <FlexBox height="100%">*/}
+      {/*      <CodePane language='javascript'>{`*/}
+      {/*        let x = 1 + 2;*/}
+      {/*        let y = "a" + "b";*/}
+      {/*        let z = "12" + 1;*/}
+      {/*      `}</CodePane>*/}
+      {/*      →*/}
+      {/*      <CodePane language='php'>{`*/}
+      {/*        $x = 1 + 2;*/}
+      {/*        $y = "a" . "b";*/}
+      {/*        $z = // ???*/}
+      {/*      `}</CodePane>*/}
+      {/*    </FlexBox>*/}
+      {/*  </FlexBox>*/}
+      {/*  <Notes>*/}
+      {/*    - Большая полиморфность JS.<br />*/}
+      {/*    - Что должно быть в третьем случае?*/}
+      {/*  </Notes>*/}
+      {/*</Slide>*/}
 
-      <Slide>
-        <FlexBox height="100%" flexDirection="column">
-          <Heading>WTF #2: type-dependent rendering</Heading>
-          <FlexBox height="100%">
-            <CodePane language='javascript'>{`
-              let x = 1 + 2;
-              let y = "a" + "b";
-              let z = "12" + 1; // 121
-            `}</CodePane>
-            →
-            <CodePane language='php'>{`
-              $x = 1 + 2;
-              $y = "a" . "b";
-              $z = "12" . 1; // 121
-            `}</CodePane>
-          </FlexBox>
-        </FlexBox>
-        <Notes>
-          - Очевидно, должно работать аналогично.<br />
-          - Используем вывод типов TS
-        </Notes>
-      </Slide>
+      {/*<Slide>*/}
+      {/*  <FlexBox height="100%" flexDirection="column">*/}
+      {/*    <Heading>WTF #2: type-dependent rendering</Heading>*/}
+      {/*    <FlexBox height="100%">*/}
+      {/*      <CodePane language='javascript'>{`*/}
+      {/*        let x = 1 + 2;*/}
+      {/*        let y = "a" + "b";*/}
+      {/*        let z = "12" + 1; // 121*/}
+      {/*      `}</CodePane>*/}
+      {/*      →*/}
+      {/*      <CodePane language='php'>{`*/}
+      {/*        $x = 1 + 2;*/}
+      {/*        $y = "a" . "b";*/}
+      {/*        $z = "12" . 1; // 121*/}
+      {/*      `}</CodePane>*/}
+      {/*    </FlexBox>*/}
+      {/*  </FlexBox>*/}
+      {/*  <Notes>*/}
+      {/*    - Очевидно, должно работать аналогично.<br />*/}
+      {/*    - Используем вывод типов TS*/}
+      {/*  </Notes>*/}
+      {/*</Slide>*/}
 
-      <Slide>
-        <FlexBox height="100%" flexDirection="column">
-          <Heading>WTF #2: type-dependent rendering</Heading>
+      {/*<Slide>*/}
+      {/*  <FlexBox height="100%" flexDirection="column">*/}
+      {/*    <Heading>WTF #2: type-dependent rendering</Heading>*/}
 
-            <CodePane language='javascript'>{`
-              let x = [1, 2, 3].includes(2);
-              let y = "lolkek".includes("kek");
-            `}</CodePane>
-            ↓
-            <CodePane language='php'>{`
-              $x = in_array(2, [1, 2, 3], true);
-              $y = strpos("lolkek", "kek") !== false;
-            `}</CodePane>
+      {/*      <CodePane language='javascript'>{`*/}
+      {/*        let x = [1, 2, 3].includes(2);*/}
+      {/*        let y = "lolkek".includes("kek");*/}
+      {/*      `}</CodePane>*/}
+      {/*      ↓*/}
+      {/*      <CodePane language='php'>{`*/}
+      {/*        $x = in_array(2, [1, 2, 3], true);*/}
+      {/*        $y = strpos("lolkek", "kek") !== false;*/}
+      {/*      `}</CodePane>*/}
 
-        </FlexBox>
-        <Notes>
-          - Аналогично и с полиморфными методами стандартной библиотеки
-        </Notes>
-      </Slide>
+      {/*  </FlexBox>*/}
+      {/*  <Notes>*/}
+      {/*    - Аналогично и с полиморфными методами стандартной библиотеки*/}
+      {/*  </Notes>*/}
+      {/*</Slide>*/}
 
-      <Slide>
-        <FlexBox height="100%" flexDirection="column">
-          <Heading>WTF #3: dead code elimination</Heading>
+      {/*<Slide>*/}
+      {/*  <FlexBox height="100%" flexDirection="column">*/}
+      {/*    <Heading>WTF #3: dead code elimination</Heading>*/}
 
-          <CodePane language='javascript'>{`
-              let x = [1, 2, 3].includes(2);
-              let y = "lolkek".includes("kek");
-            `}</CodePane>
-          ↓
-          <CodePane language='php'>{`
-              // .... 🕸
-            `}</CodePane>
+      {/*    <CodePane language='javascript'>{`*/}
+      {/*        let x = [1, 2, 3].includes(2);*/}
+      {/*        let y = "lolkek".includes("kek");*/}
+      {/*      `}</CodePane>*/}
+      {/*    ↓*/}
+      {/*    <CodePane language='php'>{`*/}
+      {/*        // .... 🕸*/}
+      {/*      `}</CodePane>*/}
 
-        </FlexBox>
-        <Notes>
-          - Самая дезориентирующая хрень<br />
-          - Например: есть onclick в компоненте, на сервере он не нужен<br />
-          - И все его зависимости не нужны.<br />
-          - Убираем одну - появляются другие
-        </Notes>
-      </Slide>
+      {/*  </FlexBox>*/}
+      {/*  <Notes>*/}
+      {/*    - Самая дезориентирующая хрень<br />*/}
+      {/*    - Например: есть onclick в компоненте, на сервере он не нужен<br />*/}
+      {/*    - И все его зависимости не нужны.<br />*/}
+      {/*    - Убираем одну - появляются другие*/}
+      {/*  </Notes>*/}
+      {/*</Slide>*/}
 
-      <Slide>
-        <FlexBox height="100%" flexDirection="column">
-          <Heading>WTF #3: dead code elimination</Heading>
+      {/*<Slide>*/}
+      {/*  <FlexBox height="100%" flexDirection="column">*/}
+      {/*    <Heading>WTF #3: dead code elimination</Heading>*/}
 
-          <OrderedList>
-            <Appear>
-              <ListItem>Собрать все идентификаторы</ListItem>
-            </Appear>
-            <Appear>
-              <ListItem>Установить связи между идентификаторами</ListItem>
-            </Appear>
-            <Appear>
-              <ListItem>Задать исходно используемые идентификаторы</ListItem>
-            </Appear>
-            <Appear>
-              <ListItem>Обходим граф и помечаем используемые идентификаторы</ListItem>
-            </Appear>
-            <Appear>
-              <ListItem>При генерации кода не генерируем выражения инициализации неиспользуемых идентификаторов ¯\_(ツ)_/¯</ListItem>
-            </Appear>
-          </OrderedList>
+      {/*    <OrderedList>*/}
+      {/*      <Appear>*/}
+      {/*        <ListItem>Собрать все идентификаторы</ListItem>*/}
+      {/*      </Appear>*/}
+      {/*      <Appear>*/}
+      {/*        <ListItem>Установить связи между идентификаторами</ListItem>*/}
+      {/*      </Appear>*/}
+      {/*      <Appear>*/}
+      {/*        <ListItem>Задать исходно используемые идентификаторы</ListItem>*/}
+      {/*      </Appear>*/}
+      {/*      <Appear>*/}
+      {/*        <ListItem>Обходим граф и помечаем используемые идентификаторы</ListItem>*/}
+      {/*      </Appear>*/}
+      {/*      <Appear>*/}
+      {/*        <ListItem>При генерации кода не генерируем выражения инициализации неиспользуемых идентификаторов ¯\_(ツ)_/¯</ListItem>*/}
+      {/*      </Appear>*/}
+      {/*    </OrderedList>*/}
 
-        </FlexBox>
-        <Notes>
-          - идем по пунктам с подробностями.<br />
-          1) ...<br />
-          2) кто кого использует?<br />
-          3) export, console.log<br />
-          4) ...
-        </Notes>
-      </Slide>
+      {/*  </FlexBox>*/}
+      {/*  <Notes>*/}
+      {/*    - идем по пунктам с подробностями.<br />*/}
+      {/*    1) ...<br />*/}
+      {/*    2) кто кого использует?<br />*/}
+      {/*    3) export, console.log<br />*/}
+      {/*    4) ...*/}
+      {/*  </Notes>*/}
+      {/*</Slide>*/}
 
       <Slide>
         <FlexBox height="100%">
           <Heading>А что там с внедрением?</Heading>
-          <img src={AdoptionImage} width="300px" alt='' />
+          <img src={AdoptionImage} width="450px" alt='' />
         </FlexBox>
         <Notes>
           - Мобильная версия VK - да.<br />
@@ -782,7 +787,39 @@ function App() {
 
       <Slide>
         <FlexBox height="100%">
-          <img src={QuestionsImage} width="400px" alt='' />
+          <Heading>Ресурсы</Heading>
+          <UnorderedList>
+            <Appear>
+              <ListItem>Ахо, Ульман: Компиляторы</ListItem>
+              <ListItem>Карпов: Основы построения трансляторов</ListItem>
+            </Appear>
+            <Appear>
+              <ListItem>GNU Tools:</ListItem>
+              <UnorderedList>
+                <ListItem>Lex</ListItem>
+                <ListItem>Bison</ListItem>
+              </UnorderedList>
+            </Appear>
+            <Appear>
+              <ListItem>JS Tools:</ListItem>
+              <UnorderedList>
+                <ListItem>Typescript compiler</ListItem>
+                <ListItem>Espree</ListItem>
+              </UnorderedList>
+            </Appear>
+          </UnorderedList>
+        </FlexBox>
+        <Notes>
+          - Куда копнуть в теории? Книги.<br />
+          - Ахо-Ульман - библия компиляторщика<br />
+          - Lex/Bison - для знакомых с С/С++. Например php их юзает.<br />
+          - Готовые штуки - espree (eslint!), ts compiler api
+        </Notes>
+      </Slide>
+
+      <Slide>
+        <FlexBox height="100%">
+          <img src={QuestionsImage} width="600px" alt='' />
           <FlexBox flexDirection="column">
             <Heading>Спасибо за внимание!</Heading>
             <UnorderedList>

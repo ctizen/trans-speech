@@ -34,5 +34,9 @@
 }
 
 .code-smaller pre {
-    font-size: 14px !important;
+    font-size: 28px !important;
+}
+
+.code-even-smaller pre {
+    font-size: 20px !important;
 }

@@ -1,7 +1,7 @@
-export default {
+const conf = {
     size: {
-        width: 1024,
-        height: 768
+        width: 1600,
+        height: 1200
     },
     colors: {
         primary: '#C4A287', // text, content
@@ -15,11 +15,13 @@ export default {
         text: '"PT Sans Narrow", Helvetica, Arial, sans-serif',
     },
     fontSizes: {
-        h1: '72px',
-        h2: '64px',
-        h3: '48px',
-        text: '32px',
-        monospace: '18px'
+        h1: '108px',
+        h2: '80px',
+        h3: '64px',
+        text: '40px',
+        monospace: '32px'
     },
     // space: number[];
 };
+
+export default conf;
